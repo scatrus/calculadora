@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora - Ademar Jr.</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        #conteiner {
+            margin: 0;
+            margin-left: 20px;
+            position: relative;
+            width: 600px;
+            height: 650px;
+            background-color: #C4C4C4;
+            padding: 0;
+            border: 0;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+
+        #panel {
+            border: 0;
+            position: relative;
+            padding-top: 20px;
+            height: 600px;
+        }
+
+        #visor {
+            position: relative;
+            width: 500px;
+            height: 80px;
+
+            background: #0A0A0A;
+            color: yellowgreen;
+            align-items: center;
+            margin: auto;
+
+
+        }
+
+        #visor h1 {
+            text-align: center;
+            font-size: 60px;
+            /* margin-top: 9px; */
+        }
+
+        #botoes {
+
+            position: relative;
+            width: 500px;
+            height: 450px;
+            left: 50px;
+            top: 30px;
+            background: #B4B1B1;
+            border-radius: 30px;
+            border-color: transparent;
+
+        }
+
+        #botoes button {
+            width: 70px;
+            height: 70px;
+            left: 418px;
+            top: 284px;
+
+            background: #F0E1E1;
+            border-radius: 42px;
+            font-size: 40px;
+
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            margin-block: 20px;
+            margin-inline: 10px;
+            margin-left: 15px;
+            margin-right: 10px;
+            border-color: black;
+
+        }
+
+        h1 {
+            font-weight: bold;
+        }
+
+        a:focus,
+        a:active,
+        button::-moz-focus-inner,
+        input[type="reset"]::-moz-focus-inner,
+        input[type="button"]::-moz-focus-inner,
+        input[type="submit"]::-moz-focus-inner,
+        select::-moz-focus-inner,
+        input[type="file"]>input[type="button"]::-moz-focus-inner {
+            border: 0;
+            outline: 0;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+    <div id="conteiner">
+        <div id="panel">
+            <div id="visor">
+                <h1></h1>
+            </div>
+
+            <div id="botoes">
+
+                <button value="7" onclick="numero(this.value)">7</button>
+                <button value="8" onclick="numero(this.value)">8</button>
+                <button value="9" onclick="numero(this.value)">9</button>
+                <button value="/" onclick="numero(this.value)">÷</button>
+                <button value="~" onclick="numero(this.value)">←</button>
+                <button value="4" onclick="numero(this.value)">4</button>
+                <button value="5" onclick="numero(this.value)">5</button>
+                <button value="6" onclick="numero(this.value)">6</button>
+                <button value="*" onclick="numero(this.value)">x</button>
+                <button value="C" onclick="numero(this.value)">C</button>
+                <button value="1" onclick="numero(this.value)">1</button>
+                <button value="2" onclick="numero(this.value)">2</button>
+                <button value="3" onclick="numero(this.value)">3</button>
+                <button value="-" onclick="numero(this.value)">-</button>
+                <button value="√" onclick="numero(this.value)">√</button>
+                <button value="." onclick="numero(this.value)">,</button>
+                <button value="0" onclick="numero(this.value)">0</button>
+                <button value="%" onclick="numero(this.value)">%</button>
+                <button value="+" onclick="numero(this.value)">+</button>
+                <button value="=" onclick="numero(this.value)">=</button>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+
+        function numero(digito) {
+
+            valores = document.querySelector('#visor h1')
+
+            switch (digito) {
+
+                case '√'://raiz
+                    raiz = Math.sqrt(valores.innerHTML)
+                    straiz = raiz.toString()
+                    straiz = straiz.substr(0,10)
+                    valores.innerHTML = straiz
+                    break
+
+                case '=': //calcula
+                    visor = valores.innerHTML
+                    result = eval(visor)
+                    sresult = result.toString()
+                    sresult = sresult.substr(0,10)
+                    valores.innerHTML = sresult
+                    break
+
+                case 'C': //apagar tudo
+                    window.location.reload()
+                    break
+
+                case '~': //apagar dígito  
+                    visor = valores
+                    length = valores.innerHTML.length
+                    num = visor.childNodes[length - 1]
+                    visor.removeChild(num)
+                    break
+
+                default://dígitos
+                    visor = valores
+                    if(valores.innerHTML.length < 10){
+                    num = document.createTextNode(digito)
+                    visor.appendChild(num)
+                    }
+            }
+
+        }
+    </script>
+
+
+</body></html>
